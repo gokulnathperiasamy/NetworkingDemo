@@ -11,6 +11,7 @@ import com.kpgn.networkingdemo.constant.CityID;
 import com.kpgn.networkingdemo.controller.WeatherDataController;
 import com.kpgn.networkingdemo.event.WeatherDataFailureEvent;
 import com.kpgn.networkingdemo.event.WeatherDataSuccessEvent;
+import com.kpgn.networkingdemo.manager.ConnectionManager;
 import com.squareup.otto.Subscribe;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -66,18 +67,22 @@ public class WeatherActivity extends BaseActivity {
     }
 
     private void loadWeatherData() {
-        mAVILoadingIndicator.setVisibility(View.VISIBLE);
-        mAVILoadingIndicator.show();
-        mErrorContainer.setVisibility(View.GONE);
-        mWeatherDataContainer.setVisibility(View.GONE);
+        if (ConnectionManager.isNetworkAvailable(this)) {
+            mAVILoadingIndicator.setVisibility(View.VISIBLE);
+            mAVILoadingIndicator.show();
+            mErrorContainer.setVisibility(View.GONE);
+            mWeatherDataContainer.setVisibility(View.GONE);
 
-        // Wait for 2 seconds!
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                new WeatherDataController().getWeatherData(CityID.CITY_ID_BANGALORE, ApplicationConstant.API_KEY);
-            }
-        }, 2000);
+            // Wait for 2 seconds!
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    new WeatherDataController().getWeatherData(CityID.CITY_ID_BANGALORE, ApplicationConstant.API_KEY);
+                }
+            }, 2000);
+        } else {
+            updateUI(null, false);
+        }
     }
 
     @SuppressWarnings("unused")
