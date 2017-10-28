@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface WeatherDataAPI {
 
-    @GET("weather")
-    Call<WeatherData> getWeatherData(@Query("id") String cityId, @Query("appid") String apiKey);
+    @GET("current.json")
+    Call<WeatherData> getWeatherData(@Query("key") String apiKey, @Query("q") String cityName);
 }

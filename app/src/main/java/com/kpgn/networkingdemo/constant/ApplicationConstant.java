@@ -6,6 +6,6 @@ package com.kpgn.networkingdemo.constant;
 
 public class ApplicationConstant {
 
-    public static final String API_KEY = "55030602a46dc766b350d8a78b0ca2b9";
+    public static final String API_KEY = "cbad0855979841cfbae94037172810";
 
 }

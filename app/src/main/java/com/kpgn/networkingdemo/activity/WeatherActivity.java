@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.kpgn.networkingdemo.R;
 import com.kpgn.networkingdemo.constant.ApplicationConstant;
-import com.kpgn.networkingdemo.constant.CityID;
+import com.kpgn.networkingdemo.constant.CityName;
 import com.kpgn.networkingdemo.controller.WeatherDataController;
 import com.kpgn.networkingdemo.event.WeatherDataFailureEvent;
 import com.kpgn.networkingdemo.event.WeatherDataSuccessEvent;
@@ -32,11 +32,11 @@ public class WeatherActivity extends BaseActivity {
     @BindView(R.id.tv_cloudy)
     TextView mCloudy;
 
-    @BindView(R.id.tv_max_temperature)
-    TextView mMaxTemp;
+    @BindView(R.id.tv_temp_c)
+    TextView mTempInC;
 
-    @BindView(R.id.tv_min_temperature)
-    TextView mMinTemp;
+    @BindView(R.id.tv_temp_f)
+    TextView mTempInF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class WeatherActivity extends BaseActivity {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    new WeatherDataController().getWeatherData(CityID.CITY_ID_BANGALORE, ApplicationConstant.API_KEY);
+                    new WeatherDataController().getWeatherData(ApplicationConstant.API_KEY, CityName.CITY_NAME_BANGALORE);
                 }
             }, 2000);
         } else {
@@ -103,9 +103,9 @@ public class WeatherActivity extends BaseActivity {
         if (isSuccess && successEvent != null) {
             mWeatherDataContainer.setVisibility(View.VISIBLE);
             mErrorContainer.setVisibility(View.GONE);
-            mCloudy.setText(successEvent.getWeatherData().weather.get(0).description);
-            mMaxTemp.setText(getString(R.string.temperature_string, successEvent.getWeatherData().main.tempMax));
-            mMinTemp.setText(getString(R.string.temperature_string, successEvent.getWeatherData().main.tempMin));
+            mCloudy.setText(successEvent.weatherData.current.condition.text);
+            mTempInC.setText(getString(R.string.temperature_string, successEvent.weatherData.current.tempInF));
+            mTempInF.setText(getString(R.string.temperature_string, successEvent.weatherData.current.tempInC));
         } else {
             mWeatherDataContainer.setVisibility(View.GONE);
             mErrorContainer.setVisibility(View.VISIBLE);

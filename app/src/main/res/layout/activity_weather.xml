@@ -53,7 +53,7 @@
             android:layout_height="12dp" />
 
         <TextView
-            android:id="@+id/tv_max_temperature"
+            android:id="@+id/tv_temp_c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -64,11 +64,11 @@
             android:layout_height="12dp" />
 
         <TextView
-            android:id="@+id/tv_min_temperature"
+            android:id="@+id/tv_temp_f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="25.4 C" />
+            tools:text="104.4 F" />
 
     </LinearLayout>
 

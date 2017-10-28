@@ -11,16 +11,16 @@ import retrofit2.Response;
 
 public class WeatherDataController extends BaseController implements Callback<WeatherData> {
 
-    public void getWeatherData(String cityId, String apiKey) {
+    public void getWeatherData(String apiKey, String cityName) {
         WeatherDataAPI weatherDataAPI = retrofit.create(WeatherDataAPI.class);
 
-        Call<WeatherData> call = weatherDataAPI.getWeatherData(cityId, apiKey);
+        Call<WeatherData> call = weatherDataAPI.getWeatherData(apiKey, cityName);
         call.enqueue(this);
     }
 
     @Override
     public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
-        if(response.isSuccessful()) {
+        if (response.isSuccessful()) {
             try {
                 WeatherData weatherData = response.body();
                 bus.post(new WeatherDataSuccessEvent(weatherData));
