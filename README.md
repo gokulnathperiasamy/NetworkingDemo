@@ -10,6 +10,10 @@
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
 - [AVLoadingIndicatorView](https://github.com/81813780/AVLoadingIndicatorView)
 
+###### API Provider:
+
+- [Apixu.com](http://www.apixu.com/) JSON and XML Weather API and Geo Developer API.
+
 #### Author
 
 - Gokul Nath KP
