@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'de.felixschulze.gradle.hockeyapp'
 
 static def appVersionName() {
-    return "1.0"
+    return "0.2"
 }
 
 static def appVersionCode() {
@@ -10,13 +10,13 @@ static def appVersionCode() {
 }
 
 static def appBaseName() {
-    return "NetworkingDemo"
+    return "WeatherMap"
 }
 
 android {
     compileSdkVersion 25
     defaultConfig {
-        applicationId "com.kpgn.networkingdemo"
+        applicationId "com.kpgn.weathermap"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode appVersionCode()
@@ -27,8 +27,36 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def date = new Date();
+                    def formattedDate = date.format('ddMMyyyy_HHmm')
+                    outputFileName = appBaseName() + "_${variant.name}_v${variant.versionName}_d" + formattedDate + ".apk"
+                }
+            }
+        }
+
+        flavorDimensions "build"
+        productFlavors {
+            dev {
+                // Dev build
+                dimension "build"
+            }
+
+            prod {
+                // Prod build
+                dimension "build"
+            }
         }
     }
+}
+
+hockeyapp {
+    apiToken = "bc6e94da41d3480e93603140b61be44e"
+    releaseType = 1
+    notify = 1
+    status = 2
 }
 
 dependencies {
