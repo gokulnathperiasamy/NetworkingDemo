@@ -3,5 +3,6 @@
 
     <string name="temperature_string_c">%1f C</string>
     <string name="temperature_string_f">%1f F</string>
-    <string name="try_agian">Unable to load data. Try again!</string>
+    <string name="try_again">Unable to load data. Try again!</string>
+    <string name="menu_refresh">Refresh</string>
 </resources>

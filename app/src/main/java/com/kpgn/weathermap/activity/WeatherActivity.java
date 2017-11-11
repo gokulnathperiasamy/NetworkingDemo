@@ -2,6 +2,8 @@ package com.kpgn.weathermap.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,6 +64,23 @@ public class WeatherActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         bus.unregister(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_weather_activity, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_action_refresh:
+                loadWeatherData();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadWeatherData() {
