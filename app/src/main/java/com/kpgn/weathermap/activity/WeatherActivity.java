@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.activity;
+package com.kpgn.weathermap.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.kpgn.networkingdemo.R;
-import com.kpgn.networkingdemo.constant.ApplicationConstant;
-import com.kpgn.networkingdemo.constant.CityName;
-import com.kpgn.networkingdemo.controller.WeatherDataController;
-import com.kpgn.networkingdemo.event.WeatherDataFailureEvent;
-import com.kpgn.networkingdemo.event.WeatherDataSuccessEvent;
-import com.kpgn.networkingdemo.manager.ConnectionManager;
+import com.kpgn.weathermap.R;
+import com.kpgn.weathermap.constant.ApplicationConstant;
+import com.kpgn.weathermap.constant.CityName;
+import com.kpgn.weathermap.controller.WeatherDataController;
+import com.kpgn.weathermap.event.WeatherDataFailureEvent;
+import com.kpgn.weathermap.event.WeatherDataSuccessEvent;
+import com.kpgn.weathermap.manager.ConnectionManager;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;

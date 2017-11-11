@@ -1,8 +1,8 @@
-package com.kpgn.networkingdemo.controller;
+package com.kpgn.weathermap.controller;
 
-import com.kpgn.networkingdemo.constant.EndPoint;
-import com.kpgn.networkingdemo.manager.OttoBusManager;
-import com.kpgn.networkingdemo.manager.RetrofitManager;
+import com.kpgn.weathermap.constant.EndPoint;
+import com.kpgn.weathermap.manager.OttoBusManager;
+import com.kpgn.weathermap.manager.RetrofitManager;
 import com.squareup.otto.Bus;
 
 import retrofit2.Retrofit;

@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.entity;
+package com.kpgn.weathermap.entity;
 
 import com.google.gson.annotations.SerializedName;
 

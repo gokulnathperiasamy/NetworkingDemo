@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NetworkingDemo</string>
+    <string name="app_name">Weather Map</string>
 
     <string name="temperature_string_c">%1f C</string>
     <string name="temperature_string_f">%1f F</string>

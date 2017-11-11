@@ -1,6 +1,6 @@
-package com.kpgn.networkingdemo.api;
+package com.kpgn.weathermap.api;
 
-import com.kpgn.networkingdemo.entity.WeatherData;
+import com.kpgn.weathermap.entity.WeatherData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

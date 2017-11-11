@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo;
+package com.kpgn.weathermap;
 
 import org.junit.Test;
 

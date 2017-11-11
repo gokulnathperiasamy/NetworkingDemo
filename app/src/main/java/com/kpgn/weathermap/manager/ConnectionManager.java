@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.manager;
+package com.kpgn.weathermap.manager;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

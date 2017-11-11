@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.entity;
+package com.kpgn.weathermap.entity;
 
 /**
  * Created by gokulnathkp on 28/10/17.

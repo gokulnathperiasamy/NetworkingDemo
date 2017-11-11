@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.constant;
+package com.kpgn.weathermap.constant;
 
 /**
  * Created by gokulnathkp on 24/10/17.

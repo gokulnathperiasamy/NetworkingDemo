@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.manager;
+package com.kpgn.weathermap.manager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

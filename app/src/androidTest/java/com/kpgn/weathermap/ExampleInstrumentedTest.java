@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo;
+package com.kpgn.weathermap;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.kpgn.networkingdemo", appContext.getPackageName());
+        assertEquals("com.kpgn.weathermap", appContext.getPackageName());
     }
 }

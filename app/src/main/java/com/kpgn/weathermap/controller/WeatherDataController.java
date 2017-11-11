@@ -1,9 +1,9 @@
-package com.kpgn.networkingdemo.controller;
+package com.kpgn.weathermap.controller;
 
-import com.kpgn.networkingdemo.api.WeatherDataAPI;
-import com.kpgn.networkingdemo.entity.WeatherData;
-import com.kpgn.networkingdemo.event.WeatherDataFailureEvent;
-import com.kpgn.networkingdemo.event.WeatherDataSuccessEvent;
+import com.kpgn.weathermap.api.WeatherDataAPI;
+import com.kpgn.weathermap.entity.WeatherData;
+import com.kpgn.weathermap.event.WeatherDataFailureEvent;
+import com.kpgn.weathermap.event.WeatherDataSuccessEvent;
 
 import retrofit2.Call;
 import retrofit2.Callback;

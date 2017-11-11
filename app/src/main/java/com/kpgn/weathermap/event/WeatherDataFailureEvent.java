@@ -1,4 +1,4 @@
-package com.kpgn.networkingdemo.event;
+package com.kpgn.weathermap.event;
 
 public class WeatherDataFailureEvent {
 

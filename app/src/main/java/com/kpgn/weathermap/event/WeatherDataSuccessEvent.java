@@ -1,6 +1,6 @@
-package com.kpgn.networkingdemo.event;
+package com.kpgn.weathermap.event;
 
-import com.kpgn.networkingdemo.entity.WeatherData;
+import com.kpgn.weathermap.entity.WeatherData;
 
 public class WeatherDataSuccessEvent {
 
