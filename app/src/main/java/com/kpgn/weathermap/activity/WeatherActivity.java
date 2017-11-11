@@ -49,7 +49,6 @@ public class WeatherActivity extends BaseActivity {
         setContentView(R.layout.activity_weather);
         ButterKnife.bind(this);
 
-        hideActionBar();
         loadWeatherData();
     }
 
@@ -63,12 +62,6 @@ public class WeatherActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         bus.unregister(this);
-    }
-
-    private void hideActionBar() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
     }
 
     private void loadWeatherData() {
