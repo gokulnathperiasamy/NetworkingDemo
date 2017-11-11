@@ -94,7 +94,8 @@ public class WeatherActivity extends BaseActivity {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    new WeatherDataController().getWeatherData(ApplicationConstant.API_KEY, CityName.CITY_NAME_BANGALORE);
+                    new WeatherDataController().getWeatherData(ApplicationConstant.API_KEY,
+                            CityName.CITY_NAME_BANGALORE, getApplicationContext());
                 }
             }, 2000);
         } else {

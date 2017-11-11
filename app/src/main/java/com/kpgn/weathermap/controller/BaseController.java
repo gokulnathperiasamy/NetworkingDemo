@@ -1,8 +1,6 @@
 package com.kpgn.weathermap.controller;
 
-import com.kpgn.weathermap.constant.EndPoint;
 import com.kpgn.weathermap.manager.OttoBusManager;
-import com.kpgn.weathermap.manager.RetrofitManager;
 import com.squareup.otto.Bus;
 
 import retrofit2.Retrofit;
@@ -14,6 +12,6 @@ import retrofit2.Retrofit;
 public class BaseController {
 
     protected Bus bus = OttoBusManager.getInstance();
-    protected Retrofit retrofit = RetrofitManager.getInstance(EndPoint.BASE_URL);
+    protected Retrofit retrofit;
 
 }

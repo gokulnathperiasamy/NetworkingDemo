@@ -1,5 +1,7 @@
 package com.kpgn.weathermap.manager;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -12,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
 
-    public static Retrofit getInstance(String URL) {
+    public static Retrofit getInstance(String URL, Context context) {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -20,6 +22,7 @@ public class RetrofitManager {
 
         return new Retrofit.Builder()
                 .baseUrl(URL)
+                .client(OkHttpManager.getInstance(context))
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
