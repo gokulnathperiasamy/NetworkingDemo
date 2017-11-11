@@ -10,6 +10,7 @@
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
 - [Picasso](https://github.com/square/picasso)
 - [AVLoadingIndicatorView](https://github.com/81813780/AVLoadingIndicatorView)
+- [Chuck](https://github.com/jgilfelt/chuck)
 
 ###### App Distribution
 
