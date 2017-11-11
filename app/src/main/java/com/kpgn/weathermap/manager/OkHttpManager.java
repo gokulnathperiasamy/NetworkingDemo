@@ -2,6 +2,7 @@ package com.kpgn.weathermap.manager;
 
 import android.content.Context;
 
+import com.kpgn.weathermap.BuildConfig;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import okhttp3.OkHttpClient;
@@ -22,9 +23,11 @@ public class OkHttpManager {
         if (okHttpClient == null) {
             synchronized (OkHttpManager.class) {
                 if (okHttpClient == null) {
-                    okHttpClient = new OkHttpClient.Builder()
-                            .addInterceptor(new ChuckInterceptor(context))
-                            .build();
+                    OkHttpClient.Builder builder = new OkHttpClient.Builder();
+                    if (BuildConfig.DEBUG) {
+                        builder.addInterceptor(new ChuckInterceptor(context));
+                    }
+                    okHttpClient = builder.build();
                 }
             }
         }
