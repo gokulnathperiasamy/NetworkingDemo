@@ -9,6 +9,7 @@ general:
 dependencies:
     pre:
             - echo y | android update sdk --no-ui --all --filter "tools,platform-tools,build-tools,android-25"
+            - echo y | android update sdk --no-ui --all --filter "build-tools-26.0.2"
     override:
         - chmod +x gradlew
         - ./gradlew dependencies
