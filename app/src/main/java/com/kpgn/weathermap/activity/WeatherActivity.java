@@ -15,6 +15,7 @@ import com.kpgn.weathermap.controller.WeatherDataController;
 import com.kpgn.weathermap.event.WeatherDataFailureEvent;
 import com.kpgn.weathermap.event.WeatherDataSuccessEvent;
 import com.kpgn.weathermap.manager.ConnectionManager;
+import com.kpgn.weathermap.utility.TextUtil;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -33,17 +34,23 @@ public class WeatherActivity extends BaseActivity {
     @BindView(R.id.weather_data_container)
     View mWeatherDataContainer;
 
+    @BindView(R.id.tv_weather_city)
+    TextView mWeatherCity;
+
     @BindView(R.id.iv_condition)
     ImageView mCondition;
 
-    @BindView(R.id.tv_cloudy)
-    TextView mCloudy;
+    @BindView(R.id.tv_weather_condition)
+    TextView mWeatherCondition;
 
-    @BindView(R.id.tv_temp_c)
-    TextView mTempInC;
+    @BindView(R.id.tv_temp_current)
+    TextView mTempCurrent;
 
-    @BindView(R.id.tv_temp_f)
-    TextView mTempInF;
+    @BindView(R.id.tv_temp_feels_like)
+    TextView mTempFeelsLike;
+
+    @BindView(R.id.tv_updated_on)
+    TextView mUpdatedOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,10 +128,23 @@ public class WeatherActivity extends BaseActivity {
         if (isSuccess && successEvent != null) {
             mWeatherDataContainer.setVisibility(View.VISIBLE);
             mErrorContainer.setVisibility(View.GONE);
-            mCloudy.setText(successEvent.weatherData.current.condition.text);
-            mTempInC.setText(getString(R.string.temperature_string_f, successEvent.weatherData.current.tempInF));
-            mTempInF.setText(getString(R.string.temperature_string_c, successEvent.weatherData.current.tempInC));
-            Picasso.with(this).load("http:" + successEvent.weatherData.current.condition.icon).into(mCondition);
+            mWeatherCity.setText(getString(R.string.weather_header,
+                    successEvent.weatherData.location.name,
+                    successEvent.weatherData.location.region,
+                    successEvent.weatherData.location.country));
+            mWeatherCondition.setText(successEvent.weatherData.current.condition.text);
+            mTempCurrent.setText(getString(R.string.temperature_string_current,
+                    TextUtil.getFormattedString(successEvent.weatherData.current.tempInC),
+                    TextUtil.getFormattedString(successEvent.weatherData.current.tempInF)));
+            mTempFeelsLike.setText(getString(R.string.temperature_string_feels_like,
+                    TextUtil.getFormattedString(successEvent.weatherData.current.feelsLikeInC),
+                    TextUtil.getFormattedString(successEvent.weatherData.current.feelsLikeInF)));
+            mUpdatedOn.setText(getString(R.string.updated_on_string,
+                    successEvent.weatherData.current.lastUpdated));
+            Picasso.with(this)
+                    .load("http:" + successEvent.weatherData.current.condition.icon)
+                    .placeholder(R.drawable.ic_loading)
+                    .into(mCondition);
         } else {
             mWeatherDataContainer.setVisibility(View.GONE);
             mErrorContainer.setVisibility(View.VISIBLE);
