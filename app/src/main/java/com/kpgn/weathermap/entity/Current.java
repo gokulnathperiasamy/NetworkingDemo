@@ -19,8 +19,8 @@ public class Current {
     public Condition condition;
 
     @SerializedName("feelslike_c")
-    public String feelsLikeInC;
+    public double feelsLikeInC;
 
     @SerializedName("feelslike_f")
-    public String feelsLikeInF;
+    public double feelsLikeInF;
 }

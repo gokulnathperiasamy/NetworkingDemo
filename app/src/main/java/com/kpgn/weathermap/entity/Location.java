@@ -6,6 +6,7 @@ package com.kpgn.weathermap.entity;
 
 public class Location {
     public String name;
+    public String region;
     public String country;
     public String localtime;
 }
