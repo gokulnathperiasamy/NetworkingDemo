@@ -37,6 +37,9 @@ public class WeatherActivity extends BaseActivity {
     @BindView(R.id.tv_weather_city)
     TextView mWeatherCity;
 
+    @BindView(R.id.avi_condition)
+    AVLoadingIndicatorView mAVICondition;
+
     @BindView(R.id.iv_condition)
     ImageView mCondition;
 
@@ -128,23 +131,39 @@ public class WeatherActivity extends BaseActivity {
         if (isSuccess && successEvent != null) {
             mWeatherDataContainer.setVisibility(View.VISIBLE);
             mErrorContainer.setVisibility(View.GONE);
+
             mWeatherCity.setText(getString(R.string.weather_header,
                     successEvent.weatherData.location.name,
                     successEvent.weatherData.location.region,
                     successEvent.weatherData.location.country));
             mWeatherCondition.setText(successEvent.weatherData.current.condition.text);
+
             mTempCurrent.setText(getString(R.string.temperature_string_current,
                     TextUtil.getFormattedString(successEvent.weatherData.current.tempInC),
                     TextUtil.getFormattedString(successEvent.weatherData.current.tempInF)));
+
             mTempFeelsLike.setText(getString(R.string.temperature_string_feels_like,
                     TextUtil.getFormattedString(successEvent.weatherData.current.feelsLikeInC),
                     TextUtil.getFormattedString(successEvent.weatherData.current.feelsLikeInF)));
+
             mUpdatedOn.setText(getString(R.string.updated_on_string,
                     successEvent.weatherData.current.lastUpdated));
+
             Picasso.with(this)
                     .load("http:" + successEvent.weatherData.current.condition.icon)
-                    .placeholder(R.drawable.ic_loading)
-                    .into(mCondition);
+                    .into(mCondition, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mCondition.setVisibility(View.VISIBLE);
+                            mAVICondition.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            mCondition.setVisibility(View.VISIBLE);
+                            mCondition.setImageDrawable(getResources().getDrawable(R.drawable.ic_loading));
+                        }
+                    });
         } else {
             mWeatherDataContainer.setVisibility(View.GONE);
             mErrorContainer.setVisibility(View.VISIBLE);

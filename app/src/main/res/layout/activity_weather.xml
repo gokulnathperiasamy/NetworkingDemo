@@ -82,6 +82,18 @@
             android:orientation="horizontal"
             android:visibility="visible">
 
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/avi_condition"
+                style="@style/AVLoadingIndicatorView"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:visibility="visible"
+                app:indicatorColor="@color/colorPrimary"
+                app:indicatorName="LineScalePartyIndicator" />
+
             <ImageView
                 android:id="@+id/iv_condition"
                 android:layout_width="64dp"
@@ -89,7 +101,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="12dp"
@@ -105,10 +118,10 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:id="@+id/tv_weather_condition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/colorPrimary"
                     tools:text="Cloudy. Light shower." />
 
