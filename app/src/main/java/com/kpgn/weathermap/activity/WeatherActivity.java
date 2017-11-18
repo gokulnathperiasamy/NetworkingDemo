@@ -16,15 +16,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kpgn.weathermap.R;
 import com.kpgn.weathermap.constant.ApplicationConstant;
-import com.kpgn.weathermap.constant.CityName;
 import com.kpgn.weathermap.controller.WeatherDataController;
+import com.kpgn.weathermap.entity.CityData;
 import com.kpgn.weathermap.event.WeatherDataFailureEvent;
 import com.kpgn.weathermap.event.WeatherDataSuccessEvent;
 import com.kpgn.weathermap.manager.ConnectionManager;
+import com.kpgn.weathermap.utility.CityDataHelper;
 import com.kpgn.weathermap.utility.TextUtil;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,7 +120,7 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
             handler.postDelayed(new Runnable() {
                 public void run() {
                     new WeatherDataController().getWeatherData(ApplicationConstant.API_KEY,
-                            CityName.CITY_NAME_BANGALORE, getApplicationContext());
+                            "Bangalore", getApplicationContext());
                 }
             }, 2000);
         } else {
@@ -187,9 +190,17 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
         googleMap.getUiSettings().setMapToolbarEnabled(false);
         googleMap.getUiSettings().setZoomControlsEnabled(false);
         googleMap.getUiSettings().setZoomGesturesEnabled(false);
+        googleMap.setTrafficEnabled(false);
+        setupMarkers(googleMap);
+    }
 
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    private void setupMarkers(GoogleMap googleMap) {
+        List<CityData> cityDataList = CityDataHelper.getCityDataList();
+        for (CityData cityData : cityDataList) {
+            LatLng latLng = new LatLng(cityData.lat, cityData.lon);
+            googleMap.addMarker(new MarkerOptions().position(latLng).title(cityData.getString()));
+        }
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(12.9716, 77.5946), 5.0f));
     }
 }
