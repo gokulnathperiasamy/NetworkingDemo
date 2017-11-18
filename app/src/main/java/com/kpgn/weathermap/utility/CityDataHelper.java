@@ -40,4 +40,13 @@ public class CityDataHelper {
         return cityDataList;
     }
 
+    public static CityData getDefaultCity() {
+        CityData cityDataBangalore = new CityData();
+        cityDataBangalore.lat = 12.9716;
+        cityDataBangalore.lon = 77.5946;
+        cityDataBangalore.cityName = "Bangalore";
+
+        return cityDataBangalore;
+    }
+
 }

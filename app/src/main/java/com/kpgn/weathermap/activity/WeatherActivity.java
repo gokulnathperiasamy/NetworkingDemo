@@ -64,6 +64,8 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
     @BindView(R.id.tv_updated_on)
     TextView mUpdatedOn;
 
+    private static CityData currentCityData = CityDataHelper.getDefaultCity();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,7 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
         ButterKnife.bind(this);
 
         setupMapsAndMarker();
-        loadWeatherData();
+        loadWeatherData(currentCityData);
     }
 
     private void setupMapsAndMarker() {
@@ -101,14 +103,14 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_action_refresh:
-                loadWeatherData();
+                loadWeatherData(currentCityData);
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadWeatherData() {
+    private void loadWeatherData(final CityData cityData) {
         if (ConnectionManager.isNetworkAvailable(this)) {
             mAVILoadingIndicator.setVisibility(View.VISIBLE);
             mAVILoadingIndicator.show();
@@ -120,7 +122,7 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
             handler.postDelayed(new Runnable() {
                 public void run() {
                     new WeatherDataController().getWeatherData(ApplicationConstant.API_KEY,
-                            "Bangalore", getApplicationContext());
+                            cityData.getLatLonString(), getApplicationContext());
                 }
             }, 2000);
         } else {
@@ -201,6 +203,6 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
             googleMap.addMarker(new MarkerOptions().position(latLng).title(cityData.getString()));
         }
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(12.9716, 77.5946), 5.0f));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentCityData.lat, currentCityData.lon), 5.0f));
     }
 }

@@ -13,4 +13,7 @@ public class CityData {
         return cityName + " (" + lat + ", " + lon + ")";
     }
 
+    public String getLatLonString() {
+        return lat + ", " + lon;
+    }
 }
