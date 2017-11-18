@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kpgn.weathermap.R;
 import com.kpgn.weathermap.constant.ApplicationConstant;
@@ -32,7 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherActivity extends BaseActivity implements OnMapReadyCallback {
+public class WeatherActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     @BindView(R.id.avi_loading)
     AVLoadingIndicatorView mAVILoadingIndicator;
@@ -73,7 +74,7 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
         ButterKnife.bind(this);
 
         setupMapsAndMarker();
-        loadWeatherData(currentCityData);
+        loadWeatherData(currentCityData.getLatLonString());
     }
 
     private void setupMapsAndMarker() {
@@ -103,17 +104,19 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_action_refresh:
-                loadWeatherData(currentCityData);
+                loadWeatherData(currentCityData.getLatLonString());
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadWeatherData(final CityData cityData) {
+    private void loadWeatherData(final String cityData) {
         if (ConnectionManager.isNetworkAvailable(this)) {
             mAVILoadingIndicator.setVisibility(View.VISIBLE);
             mAVILoadingIndicator.show();
+            mAVICondition.setVisibility(View.VISIBLE);
+            mAVICondition.show();
             mErrorContainer.setVisibility(View.GONE);
             mWeatherDataContainer.setVisibility(View.GONE);
 
@@ -122,7 +125,7 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
             handler.postDelayed(new Runnable() {
                 public void run() {
                     new WeatherDataController().getWeatherData(ApplicationConstant.API_KEY,
-                            cityData.getLatLonString(), getApplicationContext());
+                            cityData, getApplicationContext());
                 }
             }, 2000);
         } else {
@@ -145,6 +148,8 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
     private void updateUI(WeatherDataSuccessEvent successEvent, boolean isSuccess) {
         mAVILoadingIndicator.hide();
         mAVILoadingIndicator.setVisibility(View.GONE);
+        mAVICondition.hide();
+        mAVICondition.setVisibility(View.GONE);
         if (isSuccess && successEvent != null) {
             mWeatherDataContainer.setVisibility(View.VISIBLE);
             mErrorContainer.setVisibility(View.GONE);
@@ -193,6 +198,7 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
         googleMap.getUiSettings().setZoomControlsEnabled(false);
         googleMap.getUiSettings().setZoomGesturesEnabled(false);
         googleMap.setTrafficEnabled(false);
+        googleMap.setOnMarkerClickListener(this);
         setupMarkers(googleMap);
     }
 
@@ -204,5 +210,14 @@ public class WeatherActivity extends BaseActivity implements OnMapReadyCallback 
         }
 
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentCityData.lat, currentCityData.lon), 5.0f));
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        if (marker != null) {
+            loadWeatherData(CityDataHelper.getSelectedMarkerLatLon(marker.getTitle()));
+            return true;
+        }
+        return false;
     }
 }

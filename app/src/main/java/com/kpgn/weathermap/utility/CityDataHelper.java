@@ -16,11 +16,7 @@ public class CityDataHelper {
     private static void initCityDataList() {
         cityDataList = new ArrayList<>();
 
-        CityData cityDataBangalore = new CityData();
-        cityDataBangalore.lat = 12.9716;
-        cityDataBangalore.lon = 77.5946;
-        cityDataBangalore.cityName = "Bangalore";
-        cityDataList.add(cityDataBangalore);
+        cityDataList.add(getDefaultCity());
 
         CityData cityDataChennai = new CityData();
         cityDataChennai.lat = 13.0827;
@@ -47,6 +43,18 @@ public class CityDataHelper {
         cityDataBangalore.cityName = "Bangalore";
 
         return cityDataBangalore;
+    }
+
+    public static String getSelectedMarkerLatLon(String markerTitle) {
+        if (cityDataList == null) {
+            initCityDataList();
+        }
+        for (CityData cityData : cityDataList) {
+            if (markerTitle.equals(cityData.getString())) {
+                return cityData.getLatLonString();
+            }
+        }
+        return getDefaultCity().getLatLonString();
     }
 
 }
