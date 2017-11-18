@@ -17,11 +17,13 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "com.kpgn.weathermap"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode appVersionCode()
         versionName appVersionName()
         setProperty("archivesBaseName", appBaseName())
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -61,8 +63,11 @@ hockeyapp {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation ('com.google.android.gms:play-services:11.6.0' , {
+        exclude group: 'com.android.support'
     })
     implementation 'com.android.support:appcompat-v7:25.4.0'
     implementation 'com.android.support:design:25.4.0'

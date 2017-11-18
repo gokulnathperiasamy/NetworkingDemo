@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.kpgn.weathermap.R;
 import com.kpgn.weathermap.constant.ApplicationConstant;
 import com.kpgn.weathermap.constant.CityName;
@@ -23,7 +29,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherActivity extends BaseActivity {
+public class WeatherActivity extends BaseActivity implements OnMapReadyCallback {
 
     @BindView(R.id.avi_loading)
     AVLoadingIndicatorView mAVILoadingIndicator;
@@ -61,7 +67,13 @@ public class WeatherActivity extends BaseActivity {
         setContentView(R.layout.activity_weather);
         ButterKnife.bind(this);
 
+        setupMapsAndMarker();
         loadWeatherData();
+    }
+
+    private void setupMapsAndMarker() {
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.location_marker);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -168,5 +180,15 @@ public class WeatherActivity extends BaseActivity {
             mWeatherDataContainer.setVisibility(View.GONE);
             mErrorContainer.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        // Add a marker in Sydney, Australia,
+        // and move the map's camera to the same location.
+        LatLng sydney = new LatLng(-33.852, 151.211);
+        googleMap.addMarker(new MarkerOptions().position(sydney)
+                .title("Marker in Sydney"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
