@@ -6,7 +6,7 @@ static def appVersionName() {
 }
 
 static def appVersionCode() {
-    return 11
+    return 12
 }
 
 static def appBaseName() {
@@ -25,6 +25,14 @@ android {
         resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
         multiDexEnabled true
     }
+    signingConfigs {
+        release {
+            storeFile file("keystore_weathermap.jks")
+            storePassword 'W3@therM@p'
+            keyAlias 'WeatherMap'
+            keyPassword 'W3@therM@p'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -39,7 +47,6 @@ android {
                 }
             }
         }
-
         flavorDimensions "build"
         productFlavors {
             dev {
@@ -50,15 +57,6 @@ android {
             prod {
                 // Prod build
                 dimension "build"
-            }
-        }
-
-        signingConfigs {
-            release {
-                storeFile file("keystore_weathermap.jks")
-                storePassword 'W3@therM@p'
-                keyAlias 'WeatherMap'
-                keyPassword 'W3@therM@p'
             }
         }
     }
