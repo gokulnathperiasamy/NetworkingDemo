@@ -24,6 +24,10 @@
 
 - [CircleCI](https://circleci.com/gh/gokulnathperiasamy/WeatherMap)
 
+###### Play Store Link:
+
+- [Weather Map](https://play.google.com/store/apps/details?id=com.kpgn.weathermap)
+
 ### Author
 
 - Gokul Nath KP
