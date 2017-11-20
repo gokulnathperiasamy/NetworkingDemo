@@ -51,6 +51,15 @@ android {
                 dimension "build"
             }
         }
+
+        signingConfigs {
+            release {
+                storeFile file("keystore_weathermap.jks")
+                storePassword 'W3@therM@p'
+                keyAlias 'WeatherMap'
+                keyPassword 'W3@therM@p'
+            }
+        }
     }
 }
 

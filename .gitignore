@@ -21,3 +21,7 @@
 .idea/runConfigurations.xml
 
 .idea/vcs.xml
+
+app/prod/release/output.json
+
+app/prod/release/WeatherMap_prodRelease_v0.1_d20112017_1752.apk
