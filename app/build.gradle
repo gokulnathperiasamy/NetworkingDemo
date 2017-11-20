@@ -6,7 +6,7 @@ static def appVersionName() {
 }
 
 static def appVersionCode() {
-    return 10
+    return 11
 }
 
 static def appBaseName() {
@@ -29,6 +29,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
 
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
