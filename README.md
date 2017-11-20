@@ -1,6 +1,6 @@
 # Weather Map [![CircleCI](https://circleci.com/gh/gokulnathperiasamy/WeatherMap.svg?style=shield)](https://circleci.com/gh/gokulnathperiasamy/WeatherMap)
 
-> A simple Android application which demonstrates networking in Android using best practices, to retrieve weather information from open API. Intergrated with Google Maps API for setting up markers on map.
+> A simple Android application which demonstrates networking in Android using best practices, to retrieve weather information from open API. Integrated with Google Maps API for setting up markers on map.
 
 ###### Libraries Used:
 
