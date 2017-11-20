@@ -6,7 +6,7 @@ static def appVersionName() {
 }
 
 static def appVersionCode() {
-    return 7
+    return 8
 }
 
 static def appBaseName() {
