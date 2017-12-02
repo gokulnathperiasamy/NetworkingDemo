@@ -23,10 +23,19 @@
 ###### Continious Integration:
 
 - [CircleCI](https://circleci.com/gh/gokulnathperiasamy/WeatherMap)
+- [Custom Jenkins](http://52.37.193.140:8080/blue/organizations/jenkins/WeatherMap/activity)
 
 ###### Play Store Link:
 
 - [Weather Map](https://play.google.com/store/apps/details?id=com.kpgn.weathermap)
+
+###### Jenkins Configuration:
+
+- Git-SCM
+- HockeyApp
+- Publish Junit Test Report
+- Publish JaCoCo Coverage Report
+- Publish HTML Reports
 
 ### Author
 
