@@ -35,7 +35,7 @@
 - HockeyApp
 - Publish Junit Test Report
 - Publish JaCoCo Coverage Report
-- Publish HTML Reports
+- Publish HTML Report
 
 #### Author
 
